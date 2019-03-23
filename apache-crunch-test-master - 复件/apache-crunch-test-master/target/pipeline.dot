@@ -1,0 +1,24 @@
+digraph G {
+  "SeqFile(/tmp/crunch-510934584/p1)" [label="SeqFile(/tmp/crunch-510934584/p1)" shape=folder];
+  "Text(output)" [label="Text(output)" shape=folder];
+  "Text(input.txt)" [label="Text(input.txt)" shape=folder];
+  subgraph "cluster-job1" {
+    label="Crunch Job 1";
+    subgraph "cluster-job1-map" {
+      label = Map; color = blue;
+      "S0@402009651@1561063579" [label="S0" shape=box];
+      "Aggregate.count@1961501712@1561063579" [label="Aggregate.count" shape=box];
+    }
+    subgraph "cluster-job1-reduce" {
+      label = Reduce; color = red;
+      "GBK@150138649@1561063579" [label="GBK" shape=box];
+      "combine@137225802@1561063579" [label="combine" shape=box];
+    }
+  }
+  "combine@137225802@1561063579" -> "SeqFile(/tmp/crunch-510934584/p1)";
+  "GBK@150138649@1561063579" -> "combine@137225802@1561063579";
+  "S0@402009651@1561063579" -> "Aggregate.count@1961501712@1561063579";
+  "Text(input.txt)" -> "S0@402009651@1561063579";
+  "Aggregate.count@1961501712@1561063579" -> "GBK@150138649@1561063579";
+  "combine@137225802@1561063579" -> "Text(output)";
+}

@@ -1,0 +1,4 @@
+Rihanna;0.5
+Selena;0.3
+Shakira;0.4
+Taylor;0.6
